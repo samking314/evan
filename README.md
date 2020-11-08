@@ -1,6 +1,4 @@
-# evan
-# e-van
-# E-Van
+# evan, e-van, E-Van
 
 All names for the same app.
 
