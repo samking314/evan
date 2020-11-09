@@ -22,4 +22,13 @@ or
 npm start
 ```
 
+## to test
+```
+yarn test
+```
+or
+```
+npm test
+```
+
 
