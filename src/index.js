@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { configureStore } from './store'
 import reducers from './reducers/index'
+import reportWebVitals from './reportWebVitals.js'
 
 import App from './App'
 
