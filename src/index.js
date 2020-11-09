@@ -18,3 +18,4 @@ ReactDOM.render(
 	</Provider>,
 	rootElement
 )
+reportWebVitals(console.log);
