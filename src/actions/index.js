@@ -1,4 +1,3 @@
-
 const all = {};
 
-export default all
+export default all;
