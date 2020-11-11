@@ -1,15 +1,21 @@
+import React, { Component } from 'react'
+import { Router, Route } from 'react-router-dom'
+import { createBrowserHistory } from 'history';
+
+import EnergyCalculator from './EnergyCalculator.js';
+
 import "./styles/App.css";
 
-function App() {
-	return (
-		<div className="App">
-			<header className="App-header">
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-			</header>
-		</div>
-	);
-}
+const history = createBrowserHistory();
 
-export default App;
+export default class App extends Component {
+	render() {
+		return (
+			<Router history={history}>
+				<div className="App">
+					<Route path="/" component={EnergyCalculator} />
+				</div>
+			</Router>
+		);
+	}
+}
