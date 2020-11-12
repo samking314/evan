@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { EnergyComponent } from "./EnergyComponent";
-import { filterAndMapEnergyTypes } from "./helpers/energy-helper";
+import { filterAndMapEnergyCompTypes } from "./helpers/energy-helper";
 import EnergyCalculator from "./EnergyCalculator";
 
 describe("Main Screen", () => {
@@ -11,7 +11,7 @@ describe("Main Screen", () => {
 		ReactDOM.render(<App />, div);
 		ReactDOM.unmountComponentAtNode(div);
 	});
-})
+});
 
 describe("Energy Calculator", () => {
 	it("renders energy calculator", () => {
@@ -21,10 +21,10 @@ describe("Energy Calculator", () => {
 	});
 
 	it("renders energy component with all elements", () => {
-		let { getByText, getByTestId } = render(<EnergyComponent />);
-		const energyCompSelect = getByTestId('energy-comp-select');
+		const { getByText, getByTestId } = render(<EnergyComponent />);
+		const energyCompSelect = getByTestId("energy-comp-select");
 		expect(energyCompSelect).toBeInTheDocument();
-		const energyCompNumber = getByTestId('energy-comp-number');
+		const energyCompNumber = getByTestId("energy-comp-amount");
 		expect(energyCompNumber).toBeInTheDocument();
 	});
 
@@ -32,40 +32,44 @@ describe("Energy Calculator", () => {
 		const testEnergyData = [
 			{
 				name: "solar energy",
-				value: "solar",
+				type: "solar",
+				amount: 0,
 			},
 		];
-		expect(filterAndMapEnergyTypes(testEnergyData).length).toEqual(1);
+		expect(filterAndMapEnergyCompTypes(testEnergyData).length).toEqual(1);
 	});
 
-	it("energy component null name and value", () => {
+	it("energy component null name and type", () => {
 		const testEnergyData = [
 			{
 				name: null,
-				value: null,
+				type: null,
+				amount: 0,
 			},
 		];
-		expect(filterAndMapEnergyTypes(testEnergyData).length).toEqual(0);
+		expect(filterAndMapEnergyCompTypes(testEnergyData).length).toEqual(0);
 	});
 
 	it("energy component null name", () => {
 		const testEnergyData = [
 			{
 				name: null,
-				value: "value",
+				type: "type",
+				amount: 0,
 			},
 		];
-		expect(filterAndMapEnergyTypes(testEnergyData).length).toEqual(0);
+		expect(filterAndMapEnergyCompTypes(testEnergyData).length).toEqual(0);
 	});
 
-	it("energy component null value", () => {
+	it("energy component null type", () => {
 		const testEnergyData = [
 			{
 				name: "name",
-				value: null,
+				type: null,
+				amount: 0,
 			},
 		];
-		expect(filterAndMapEnergyTypes(testEnergyData).length).toEqual(0);
+		expect(filterAndMapEnergyCompTypes(testEnergyData).length).toEqual(0);
 	});
 
 	it("renders energy component with test data", () => {
@@ -73,10 +77,62 @@ describe("Energy Calculator", () => {
 		const testEnergyData = [
 			{
 				name: "solar energy",
-				value: "solar",
+				type: "solar",
+				amount: 0,
 			},
 		];
-		ReactDOM.render(<EnergyComponent energyCompData={testEnergyData} />, div);
+		ReactDOM.render(
+			<EnergyComponent energyCompData={testEnergyData} />,
+			div
+		);
 		ReactDOM.unmountComponentAtNode(div);
 	});
-})
+
+	it("changes type of energy comp", () => {
+		const testEnergyData = [
+			{
+				name: "solar energy",
+				type: "solar",
+				amount: 0,
+			},
+		];
+		const { getByText, getByTestId } = render(
+			<EnergyComponent energyCompData={testEnergyData} />
+		);
+		const energyCompSelect = getByTestId("energy-comp-select");
+		fireEvent.change(energyCompSelect, { target: { value: "solar" } });
+		expect(energyCompSelect).toHaveTextContent("solar energy");
+	});
+
+	it("valid energy amount", () => {
+		const testEnergyData = [
+			{
+				name: "solar energy",
+				type: "solar",
+				amount: 100,
+			},
+		];
+		const { getByText, getByTestId } = render(
+			<EnergyComponent energyCompData={testEnergyData} />
+		);
+		const energyCompAmount = getByTestId("energy-comp-amount");
+		fireEvent.change(energyCompAmount, { target: { value: 20 } });
+		expect(energyCompAmount.value).toEqual("20");
+	});
+
+	it("invalid energy amount", () => {
+		const testEnergyData = [
+			{
+				name: "solar energy",
+				type: "solar",
+				amount: 100,
+			},
+		];
+		const { getByText, getByTestId } = render(
+			<EnergyComponent energyCompData={testEnergyData} />
+		);
+		const energyCompAmount = getByTestId("energy-comp-amount");
+		fireEvent.change(energyCompAmount, { target: { value: null } });
+		expect(energyCompAmount.value).toEqual("");
+	});
+});

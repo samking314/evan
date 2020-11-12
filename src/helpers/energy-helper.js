@@ -1,12 +1,15 @@
-export const filterAndMapEnergyTypes = energyCompData => {
+export const filterAndMapEnergyCompTypes = energyCompData => {
 	if (energyCompData != null && energyCompData.length > 0) {
 		return energyCompData
 			.filter(ec => {
-				return ec.name && ec.value;
+				return ec.name && ec.type;
 			})
 			.map((ec, ecindex) => {
 				return (
-					<option value={ec.value} key={"energy-comp-data" + ecindex}>
+					<option
+						value={ec.type}
+						key={"energy-comp-type-data" + ecindex}
+					>
 						{ec.name}
 					</option>
 				);

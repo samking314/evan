@@ -1,18 +1,24 @@
 import { useState } from "react";
 import Select from "@material-ui/core/Select";
-import TextField from "@material-ui/core/TextField";
-import { filterAndMapEnergyTypes } from "./helpers/energy-helper";
+import Input from "@material-ui/core/Input";
+import { filterAndMapEnergyCompTypes } from "./helpers/energy-helper";
 import { energyCompData } from "./mock/energy";
 
 export const EnergyComponent = ({ energyCompData = [] }) => {
 	const [state, setState] = useState({
 		type: "n/a",
+		amount: 0,
 	});
 	const handleChangeType = event => {
-		const type = event.target.name;
 		setState({
 			...state,
-			[type]: event.target.value || "n/a",
+			type: event.target.value,
+		});
+	};
+	const handleChangeAmount = event => {
+		setState({
+			...state,
+			amount: event.target.value,
 		});
 	};
 	return (
@@ -24,21 +30,22 @@ export const EnergyComponent = ({ energyCompData = [] }) => {
 				inputProps={{
 					name: "type",
 					id: "type-native-simple",
-					'data-testid': "energy-comp-select"
+					"data-testid": "energy-comp-select",
 				}}
 				style={{ margin: 10 }}
 			>
-				{filterAndMapEnergyTypes(energyCompData)}
+				{filterAndMapEnergyCompTypes(energyCompData)}
 			</Select>
-			<TextField
-				id="AH-number"
-				data-testid="energy-comp-number"
+			<Input
+				id="AH-amount"
 				label="Amp Hours"
 				type="number"
-				InputLabelProps={{
-					shrink: true,
+				inputProps={{
+					"data-testid": "energy-comp-amount",
 				}}
 				variant="outlined"
+				onChange={handleChangeAmount}
+				value={state.amount}
 			/>
 		</div>
 	);

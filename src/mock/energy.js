@@ -1,18 +1,22 @@
 export const energyCompData = [
 	{
 		name: "N/A",
-		value: "",
+		type: "",
+		amount: 0,
 	},
 	{
 		name: "Solar Panel",
-		value: "solar",
+		type: "solar",
+		amount: 30,
 	},
 	{
 		name: "Running the vehicle",
-		value: "running",
+		type: "running",
+		amount: 30,
 	},
 	{
 		name: "Shore power",
-		value: "shore",
+		type: "shore",
+		amount: 100,
 	},
 ];
