@@ -1,7 +1,7 @@
 export const energyCompData = [
 	{
-		name: "N/A",
-		type: "",
+		name: "none",
+		type: "none",
 		amount: 0,
 	},
 	{

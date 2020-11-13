@@ -2,7 +2,10 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { EnergyComponent } from "./components/EnergyComponent";
-import { filterAndMapEnergyCompTypes } from "./helpers/energy-helper";
+import {
+	filterAndMapEnergyCompTypes,
+	validateEnergyComp,
+} from "./helpers/energy-helper";
 import EnergyCalculator from "./pages/EnergyCalculator";
 
 describe("Main Screen", () => {
@@ -134,5 +137,11 @@ describe("Energy Calculator", () => {
 		const energyCompAmount = getByTestId("energy-comp-amount");
 		fireEvent.change(energyCompAmount, { target: { value: null } });
 		expect(energyCompAmount.value).toEqual("");
+	});
+
+	it("error energy type or amount", () => {
+		const validator = validateEnergyComp(null);
+		const { valid } = validator;
+		expect(valid).toEqual(false);
 	});
 });

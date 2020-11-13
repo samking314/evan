@@ -18,3 +18,16 @@ export const filterAndMapEnergyCompTypes = energyCompData => {
 		return [];
 	}
 };
+
+export const validateEnergyComp = value => {
+	if (value == undefined || value == null || value == "none" || value == 0) {
+		return {
+			valid: false,
+			message: "Invalid Value",
+		};
+	}
+	return {
+		valid: true,
+		message: "",
+	};
+};
