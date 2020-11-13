@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { EnergyComponent } from "./components/EnergyComponent";
 import { filterAndMapEnergyCompTypes } from "./helpers/energy-helper";
-import EnergyCalculator from "./EnergyCalculator";
+import EnergyCalculator from "./pages/EnergyCalculator";
 
 describe("Main Screen", () => {
 	it("renders main page", () => {
