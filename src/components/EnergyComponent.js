@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Select from "@material-ui/core/Select";
 import Input from "@material-ui/core/Input";
-import { filterAndMapEnergyCompTypes } from "./helpers/energy-helper";
-import { energyCompData } from "./mock/energy";
+import { filterAndMapEnergyCompTypes } from "./../helpers/energy-helper";
+import { energyCompData } from "./../mock/energy";
 
 export const EnergyComponent = ({ energyCompData = [] }) => {
 	const [state, setState] = useState({

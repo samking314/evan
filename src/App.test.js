@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { EnergyComponent } from "./EnergyComponent";
+import { EnergyComponent } from "./components/EnergyComponent";
 import { filterAndMapEnergyCompTypes } from "./helpers/energy-helper";
 import EnergyCalculator from "./EnergyCalculator";
 
