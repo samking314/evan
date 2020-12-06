@@ -31,4 +31,10 @@ or
 npm test
 ```
 
+## to style
+Add sass to styles folder and import inside main.scss then run
+```
+sass src/styles/main.scss src/styles/main.css
+```
+
 

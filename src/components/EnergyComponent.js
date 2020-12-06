@@ -80,7 +80,7 @@ export const EnergyComponent = ({ energyCompData = [] }) => {
 					type="number"
 					inputProps={{
 						"data-testid": "energy-comp-amount",
-						"min": 0
+						min: 0,
 					}}
 					variant="outlined"
 					onChange={handleChangeAmount}
