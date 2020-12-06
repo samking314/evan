@@ -1,4 +1,4 @@
-import { useState, Fragment } from "react";
+import { useState } from "react";
 import Select from "@material-ui/core/Select";
 import Input from "@material-ui/core/Input";
 import FormHelperText from "@material-ui/core/FormHelperText";
@@ -72,7 +72,7 @@ export const EnergyComponent = ({ energyCompData = [] }) => {
 				</NativeSelect>
 				<FormHelperText>{typeError.message}</FormHelperText>
 			</FormControl>
-			<FormControl error={hasAmountError()}>
+			<FormControl error={hasAmountError()} style={{ marginLeft: 10 }}>
 				<InputLabel htmlFor="amount-native-error">Amount</InputLabel>
 				<Input
 					id="AH-amount"
@@ -80,6 +80,7 @@ export const EnergyComponent = ({ energyCompData = [] }) => {
 					type="number"
 					inputProps={{
 						"data-testid": "energy-comp-amount",
+						"min": 0
 					}}
 					variant="outlined"
 					onChange={handleChangeAmount}
