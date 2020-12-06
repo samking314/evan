@@ -4,8 +4,6 @@ import { createBrowserHistory } from "history";
 
 import EnergyCalculator from "./pages/EnergyCalculator";
 
-import "./styles/App.css";
-
 const history = createBrowserHistory();
 
 export default class App extends Component {

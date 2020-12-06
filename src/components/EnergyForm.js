@@ -5,7 +5,7 @@ import { energyCompData } from "./../mock/energy";
 class EnergyForm extends Component {
 	render() {
 		return (
-			<div style={{ flex: 1, display: 'flex', flexDirection: "row", justifyContent: "center", alignContent: "center"}}>
+			<div className="center-component">
 				<EnergyComponent energyCompData={energyCompData} />
 			</div>
 		);
