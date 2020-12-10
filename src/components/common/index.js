@@ -1,4 +1,4 @@
-import { DropdownInput } from "./DropdownInput.js";
-import { NumberInput } from "./NumberInput.js";
+import { NumberInputField } from "./NumberInputField.js";
+import { DropdownField } from "./DropdownField.js";
 
-export { NumberInput, DropdownInput };
+export { NumberInputField, DropdownField };

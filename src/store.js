@@ -15,14 +15,9 @@ export const configureStore = _initialState => {
 	_store = createStore(
 		reducer,
 		initialState,
-		compose(
-			applyMiddleware(
-				thunkMiddleware,
-				logger
-			)
-		)
+		compose(applyMiddleware(thunkMiddleware, logger))
 	);
 	return _store;
-}
+};
 
-export default configureStore
+export default configureStore;

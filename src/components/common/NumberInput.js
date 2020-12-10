@@ -5,10 +5,9 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import { validateEnergyComp } from "./../../helpers/energy-helper";
 
-export const NumberInput = ({ style }) => {
-	const [number, setNumber] = useState(0);
+export const getNumberInput = ({ style = {}, inputProps = {} }) => props => {
 	const [numberError, setNumberError] = useState({
-		valid: false,
+		valid: true,
 		message: "",
 	});
 	const handleChangeNumber = event => {
@@ -16,7 +15,6 @@ export const NumberInput = ({ style }) => {
 		setNumberError({
 			...validator,
 		});
-		setNumber(event.target.value);
 	};
 	const hasNumberError = () => {
 		const { valid } = numberError;
@@ -32,10 +30,14 @@ export const NumberInput = ({ style }) => {
 				inputProps={{
 					"data-testid": "energy-comp-amount",
 					min: 0,
+					...inputProps,
 				}}
 				variant="outlined"
-				onChange={handleChangeNumber}
-				value={number}
+				onChange={event => {
+					handleChangeNumber(event);
+					props.input.onChange(event);
+				}}
+				value={props.input.value || 1}
 				required
 			/>
 			<FormHelperText>{numberError.message}</FormHelperText>

@@ -8,10 +8,13 @@ import {
 	filterAndMapEnergyCompTypes,
 } from "./../../helpers/energy-helper";
 
-export const DropdownInput = ({ dropdownData = [], style }) => {
-	const [displayType, setDisplayType] = useState("");
+export const getDropdown = (
+	dropdownData = [],
+	style = {},
+	inputProps = {}
+) => props => {
 	const [typeError, setTypeError] = useState({
-		valid: false,
+		valid: true,
 		message: "",
 	});
 	const handleChangeType = event => {
@@ -19,7 +22,6 @@ export const DropdownInput = ({ dropdownData = [], style }) => {
 		setTypeError({
 			...validator,
 		});
-		setDisplayType(event.target.value);
 	};
 	const hasTypeError = () => {
 		const { valid } = typeError;
@@ -29,12 +31,16 @@ export const DropdownInput = ({ dropdownData = [], style }) => {
 		<FormControl error={hasTypeError()} style={style}>
 			<InputLabel htmlFor="type-native-error">Type</InputLabel>
 			<NativeSelect
-				value={displayType}
-				onChange={handleChangeType}
+				value={props.input.value}
+				onChange={event => {
+					handleChangeType(event);
+					props.input.onChange(event);
+				}}
 				inputProps={{
 					name: "type",
 					id: "type-native-simple",
 					"data-testid": "energy-comp-select",
+					...inputProps,
 				}}
 				required
 			>

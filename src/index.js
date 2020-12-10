@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 
 import reportWebVitals from "./reportWebVitals.js";
 
-import { Provider } from 'react-redux';
-import configureStore from './store.js';
+import { Provider } from "react-redux";
+import configureStore from "./store.js";
 
 import App from "./App";
 import "./styles/main.css";
